@@ -1,9 +1,11 @@
 <template>
   <a-layout class="layout">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light"> </a-layout-sider>
+    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light">
+      <page-nav />
+    </a-layout-sider>
     <a-layout>
       <a-layout-header class="layout-header">
-        <page-header></page-header>
+        <page-header />
       </a-layout-header>
       <a-layout-content class="layout-content">
         <router-view />
@@ -13,8 +15,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 import PageHeader from './Header.vue'
+import PageNav from './Nav.vue'
 
 const collapsed = ref(false)
 </script>
