@@ -8,7 +8,9 @@
         <page-header />
       </a-layout-header>
       <a-layout-content class="layout-content">
-        <router-view />
+        <div class="wrapper">
+          <router-view />
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -33,6 +35,14 @@ const collapsed = ref(false)
 
   &-content {
     padding: 16px;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    .wrapper {
+      background-color: #fff;
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 </style>
