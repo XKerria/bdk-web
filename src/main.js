@@ -5,5 +5,6 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import 'ant-design-vue/dist/antd.css'
+import './assets/styles/global.scss'
 
 createApp(App).use(store).use(router).use(Antd).mount('#app')

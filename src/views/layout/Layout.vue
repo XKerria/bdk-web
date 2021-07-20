@@ -1,12 +1,7 @@
 <template>
   <a-layout class="layout">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light" class="layout-sider" width="250">
-      <div class="brand">
-        <brand :collapsed="collapsed" />
-      </div>
-      <div class="nav">
-        <page-nav />
-      </div>
+    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light" width="250" :trigger="null">
+      <page-nav />
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="layout-header">
@@ -26,22 +21,16 @@ import { computed, onMounted, provide, ref } from 'vue'
 import PageHeader from './Header.vue'
 import PageNav from './Nav.vue'
 import Brand from './Brand.vue'
+import { useStore } from 'vuex'
 
-const collapsed = ref(false)
+const store = useStore()
+const collapsed = computed(() => store.state.glob.navCollapsed)
 </script>
 
 <style lang="scss" scoped>
 .layout {
   height: 100vh;
   width: 100vw;
-
-  &-sider {
-    display: flex;
-    flex-direction: column;
-    .nav {
-      flex: 1;
-    }
-  }
 
   &-header {
     padding: 0;

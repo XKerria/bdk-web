@@ -2,12 +2,16 @@ import lodash from 'lodash'
 import Setting from '@/models/Setting'
 
 const state = () => ({
-  settings: []
+  settings: [],
+  navCollapsed: false
 })
 
 const mutations = {
   set_settings(state, payload) {
     state.settings = payload
+  },
+  set_nav_collapsed(state, payload) {
+    state.navCollapsed = payload
   }
 }
 
@@ -22,6 +26,9 @@ const actions = {
         })
         .catch((e) => reject(e))
     })
+  },
+  collapse({ commit, state }) {
+    commit('set_nav_collapsed', !state.navCollapsed)
   }
 }
 

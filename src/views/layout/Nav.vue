@@ -1,10 +1,12 @@
 <script lang="jsx">
 import { defineComponent } from 'vue'
 import UiIcon from '@/components/ui/Icon.vue'
-import { useRouter } from 'vue-router'
+import Brand from './Brand.vue'
+import { useRouter, useRoute } from 'vue-router'
 import { routes as allRoutes } from '@/router'
 
 export default defineComponent(() => {
+  const route = useRoute()
   const router = useRouter()
   const routes = allRoutes.find((i) => i.path === '/')?.children ?? []
 
@@ -33,17 +35,35 @@ export default defineComponent(() => {
   }
 
   const comp = routes.map((i) => generate(i))
+
+  const getParent = (r) => {
+    if (r.children) return [r.name]
+    let parent = []
+    routes
+      .filter((i) => i?.children?.length)
+      .forEach((i) => {
+        const idx = i.children.findIndex((i) => i.name === r.name)
+        if (idx !== -1) parent.push(i.name)
+      })
+    return parent
+  }
+
   return () => (
-    <AMenu mode='inline' class='menu'>
-      {comp}
-    </AMenu>
+    <div className='wrapper'>
+      <Brand />
+      <AMenu mode='inline' style='flex: 1; overflow-y: auto' selectedKeys={[route?.name]} openKeys={getParent(route)}>
+        {comp}
+      </AMenu>
+    </div>
   )
 })
 </script>
 
 <style lang="scss" scoped>
-.menu {
+.wrapper {
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 </style>
