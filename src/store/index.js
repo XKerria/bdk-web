@@ -8,9 +8,11 @@ import VuexORM from '@vuex-orm/core'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
 
 import User from '@/models/User'
+import Setting from '@/models/Setting'
 
 const database = new VuexORM.Database()
 database.register(User)
+database.register(Setting)
 
 const store = createStore({
   modules: { auth },
@@ -20,7 +22,7 @@ const store = createStore({
 VuexORM.use(VuexORMAxios, {
   axios,
   headers: { Authorization: store?.state?.auth?.token },
-  baseURL: import.meta.env.VITE_BASE_URL
+  baseURL: import.meta.env.VITE_API_URL
 })
 
 export default store

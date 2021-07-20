@@ -2,4 +2,7 @@
   <div class="settings"></div>
 </template>
 
-<script setup></script>
+<script setup>
+import Setting from '@/models/Setting.js'
+Setting.fetch()
+</script>
