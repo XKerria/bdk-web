@@ -2,7 +2,12 @@
   <router-view />
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from 'vuex'
+const store = useStore()
+
+store.dispatch('glob/init')
+</script>
 
 <style>
 #app {

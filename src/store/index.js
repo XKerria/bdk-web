@@ -3,6 +3,7 @@ import createPersistedState from 'vuex-persistedstate'
 import axios from 'axios'
 
 import auth from './auth'
+import glob from './glob'
 
 import VuexORM from '@vuex-orm/core'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
@@ -15,8 +16,8 @@ database.register(User)
 database.register(Setting)
 
 const store = createStore({
-  modules: { auth },
-  plugins: [VuexORM.install(database), createPersistedState({ paths: ['auth'] })]
+  modules: { auth, glob },
+  plugins: [VuexORM.install(database), createPersistedState({ paths: ['auth', 'glob'] })]
 })
 
 VuexORM.use(VuexORMAxios, {

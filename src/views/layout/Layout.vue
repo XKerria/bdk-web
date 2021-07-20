@@ -1,7 +1,12 @@
 <template>
   <a-layout class="layout">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light">
-      <page-nav />
+    <a-layout-sider v-model:collapsed="collapsed" collapsible theme="light" class="layout-sider" width="250">
+      <div class="brand">
+        <brand :collapsed="collapsed" />
+      </div>
+      <div class="nav">
+        <page-nav />
+      </div>
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="layout-header">
@@ -17,9 +22,10 @@
 </template>
 
 <script setup>
-import { provide, ref } from 'vue'
+import { computed, onMounted, provide, ref } from 'vue'
 import PageHeader from './Header.vue'
 import PageNav from './Nav.vue'
+import Brand from './Brand.vue'
 
 const collapsed = ref(false)
 </script>
@@ -28,6 +34,14 @@ const collapsed = ref(false)
 .layout {
   height: 100vh;
   width: 100vw;
+
+  &-sider {
+    display: flex;
+    flex-direction: column;
+    .nav {
+      flex: 1;
+    }
+  }
 
   &-header {
     padding: 0;

@@ -4,5 +4,4 @@
 
 <script setup>
 import Setting from '@/models/Setting.js'
-Setting.fetch()
 </script>
