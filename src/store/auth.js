@@ -1,4 +1,3 @@
-import User from '@/models/User'
 import dayjs from 'dayjs'
 import authApi from '@/api/auth'
 
@@ -27,18 +26,18 @@ const actions = {
     return new Promise((resolve, reject) => {
       authApi
         .login(obj)
-        .then(({ data }) => {
-          commit('set_token', data)
-          resolve(data)
+        .then((token) => {
+          commit('set_token', token)
+          resolve(token)
         })
         .catch((e) => reject(e))
     })
   },
   init({ commit }) {
     return new Promise((resolve, reject) => {
-      User.current()
-        .then(({ entities }) => {
-          const user = entities?.users?.[0]
+      authApi
+        .user()
+        .then((user) => {
           commit('set_user', user)
           resolve(user)
         })
@@ -52,12 +51,15 @@ const actions = {
       resolve()
     })
   },
-  keep({ commit, state }) {
+  keep({ commit, state, dispatch }) {
     if (!state?.token?.expired_at) return
     const diff = -dayjs().diff(state.token.expired_at, 'millisecond')
+    console.log('[auth]', `Token will expire after ${Math.round(diff / 1000)} seconds.`)
     setTimeout(() => {
-      authApi.refreshToken().then(({ data }) => {
-        commit('set_token', data)
+      authApi.refreshToken().then((token) => {
+        commit('set_token', token)
+        console.log('[auth]', 'Token refreshed.')
+        dispatch('keep')
       })
     }, diff - 5000)
   }

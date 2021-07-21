@@ -6,7 +6,6 @@
 
 <script setup>
 import { reactive } from 'vue'
-import User from '@/models/User'
 
 const state = reactive({})
 </script>

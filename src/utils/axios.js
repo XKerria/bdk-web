@@ -36,7 +36,11 @@ axios.interceptors.request.use(
 )
 
 axios.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    const type = res.headers?.['content-type'] ?? ''
+    if (type.indexOf('application/json') !== -1) return res.data
+    return res
+  },
   (err) => {
     let error = { status: 0, message: '服务器未响应', code: 0 }
     if (err.response) error = err.response.data

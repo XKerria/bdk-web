@@ -446,20 +446,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.1.5.tgz#74ee3aad995d0a3996a6bb9533d4d280514ede03"
   integrity sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==
 
-"@vuex-orm/core@^0.36.4":
-  version "0.36.4"
-  resolved "https://registry.yarnpkg.com/@vuex-orm/core/-/core-0.36.4.tgz#9e2b1b8dfd74c2a508f1862ffa3e4a2c1e4cc60c"
-  integrity sha512-Wkq1G+FtcEQ4LbhEZUZalhuErb2nY2nuBo2UeGVpbVKkMss5piJhw7bt5TpWecDNmIUc2BzaenDDqm08AAe7Hw==
-  dependencies:
-    normalizr "^3.6.0"
-
-"@vuex-orm/plugin-axios@^0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@vuex-orm/plugin-axios/-/plugin-axios-0.9.4.tgz#7f20a9780b8910cd0636201c049f7975d640d0e4"
-  integrity sha512-l7gGwodIovXPMLW9UZFgFuy7Cqy+h5eDF7B65Tz2lHDt1eQbt+gL0oB6uTD1NgMTTEGWGjMbbKwPfcFxnNwgJw==
-  dependencies:
-    axios "^0.21.1"
-
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -1605,11 +1591,6 @@ node-releases@^1.1.71:
   version "1.1.73"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.73.tgz#dd4e81ddd5277ff846b80b52bb40c49edf7a7b20"
   integrity sha512-uW7fodD6pyW2FZNZnp/Z3hvWKeEW1Y8R1+1CnErE8cXFXzl5blBOoVB41CvMer6P6Q0S5FXDwcHgFd1Wj0U9zg==
-
-normalizr@^3.6.0:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-3.6.1.tgz#d367ab840e031ff382141b8d81ce279292ff69fe"
-  integrity sha512-8iEmqXmPtll8PwbEFrbPoDxVw7MKnNvt3PZzR2Xvq9nggEEOgBlNICPXYzyZ4w4AkHUzCU998mdatER3n2VaMA==
 
 nth-check@^2.0.0:
   version "2.0.0"

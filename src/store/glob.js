@@ -1,5 +1,5 @@
 import lodash from 'lodash'
-import Setting from '@/models/Setting'
+import settingApi from '@/api/setting'
 
 const state = () => ({
   settings: [],
@@ -24,9 +24,9 @@ const mutations = {
 const actions = {
   preload({ commit }) {
     return new Promise((resolve, reject) => {
-      Setting.fetch()
-        .then(({ entities }) => {
-          const { settings } = entities
+      settingApi
+        .index()
+        .then((settings) => {
           commit('set_settings', settings)
           resolve(settings)
         })
