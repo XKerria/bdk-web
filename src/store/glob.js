@@ -6,6 +6,12 @@ const state = () => ({
   navCollapsed: false
 })
 
+const getters = {
+  setting: (state) => (name) => {
+    return state.settings.filter((i) => i.name === name)?.[0]?.value ?? null
+  }
+}
+
 const mutations = {
   set_settings(state, payload) {
     state.settings = payload
@@ -16,7 +22,7 @@ const mutations = {
 }
 
 const actions = {
-  init({ commit }) {
+  preload({ commit }) {
     return new Promise((resolve, reject) => {
       Setting.fetch()
         .then(({ entities }) => {
@@ -32,4 +38,4 @@ const actions = {
   }
 }
 
-export default { namespaced: true, state, mutations, actions }
+export default { namespaced: true, state, getters, mutations, actions }

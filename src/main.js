@@ -4,7 +4,9 @@ import Antd from 'ant-design-vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import 'ant-design-vue/dist/antd.css'
-import './assets/styles/global.scss'
+import './assets/styles/index.less'
+import UiIcon from './components/ui/Icon.vue'
 
-createApp(App).use(store).use(router).use(Antd).mount('#app')
+const app = createApp(App).use(store).use(router).use(Antd)
+app.component('ui-icon', UiIcon)
+app.mount('#app')

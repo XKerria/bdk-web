@@ -22,7 +22,7 @@ const title = computed(() => store.state.glob.settings.find((i) => i.name === 'å
 const collapsed = computed(() => store.state.glob.navCollapsed)
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .brand {
   width: 100%;
   padding: 8px;

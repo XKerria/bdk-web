@@ -8,14 +8,14 @@ import AIcon from '@ant-design/icons-vue'
 import Sprite from './Sprite.vue'
 
 const props = defineProps({
-  type: {
+  name: {
     type: String,
     required: true
   }
 })
 
 const icon = defineComponent(() => {
-  return () => <Sprite type={props.type} />
+  return () => <Sprite name={props.name} />
 })
 </script>
 

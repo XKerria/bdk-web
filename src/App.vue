@@ -6,7 +6,7 @@
 import { useStore } from 'vuex'
 const store = useStore()
 
-store.dispatch('glob/init')
+store.dispatch('glob/preload')
 </script>
 
 <style>

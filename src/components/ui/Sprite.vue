@@ -4,7 +4,7 @@
     class="icon"
     :style="{ width: `${size}em`, height: `${size}em`, verticalAlign: `${offset}em` }"
   >
-    <use :xlink:href="`#icon-${type}`" />
+    <use :xlink:href="`#icon-${name}`" />
   </svg>
 </template>
 
@@ -12,7 +12,7 @@
 import { defineProps } from 'vue'
 
 defineProps({
-  type: {
+  name: {
     type: String,
     required: true
   },
@@ -27,7 +27,7 @@ defineProps({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .icon {
   fill: currentColor;
   overflow: hidden;

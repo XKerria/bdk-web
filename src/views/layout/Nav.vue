@@ -18,7 +18,7 @@ export default defineComponent(() => {
     if (item?.children?.length) {
       const slots = {
         title: () => <span>{item.meta.title}</span>,
-        icon: () => <UiIcon type={item.meta.icon} />
+        icon: () => <UiIcon name={item.meta.icon} />
       }
       return (
         <ASubMenu v-slots={slots} key={item.name}>
@@ -28,7 +28,7 @@ export default defineComponent(() => {
     } else {
       const slots = {
         default: () => <span>{item.meta.title}</span>,
-        icon: () => <UiIcon type={item.meta.icon} />
+        icon: () => <UiIcon name={item.meta.icon} />
       }
       return <AMenuItem v-slots={slots} key={item.name} onClick={() => onClick(item)} />
     }
@@ -59,7 +59,7 @@ export default defineComponent(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .wrapper {
   height: 100%;
   overflow: hidden;

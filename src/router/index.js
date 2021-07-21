@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 
 export const routes = [
   {
@@ -57,10 +58,26 @@ export const routes = [
         component: () => import('../views/setting/List.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      public: true
+    },
+    component: () => import('../views/auth/Login.vue')
   }
 ]
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const token = store.getters['auth/accessToken']
+  if (!to.meta.public && !token) next({ name: 'login' })
+  else next()
+})
+
+export default router

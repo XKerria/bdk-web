@@ -24,10 +24,14 @@ import Brand from './Brand.vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
+
 const collapsed = computed(() => store.state.glob.navCollapsed)
+
+store.dispatch('auth/init')
+store.dispatch('auth/keep')
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout {
   height: 100vh;
   width: 100vw;

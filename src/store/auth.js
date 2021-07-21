@@ -1,12 +1,17 @@
-import lodash from 'lodash'
 import User from '@/models/User'
+import dayjs from 'dayjs'
 import authApi from '@/api/auth'
 
 const state = () => ({
   user: null,
-  token: null,
-  show: false
+  token: null
 })
+
+const getters = {
+  accessToken(state) {
+    return state?.token?.access_token
+  }
+}
 
 const mutations = {
   set_user(state, payload) {
@@ -14,9 +19,6 @@ const mutations = {
   },
   set_token(state, payload) {
     state.token = payload
-  },
-  set_show(state, payload) {
-    state.show = payload
   }
 }
 
@@ -25,11 +27,17 @@ const actions = {
     return new Promise((resolve, reject) => {
       authApi
         .login(obj)
-        .then(({ token, user }) => {
-          commit('set_token', token)
-          return User.create({ data: user })
+        .then(({ data }) => {
+          commit('set_token', data)
+          resolve(data)
         })
-        .then((entities) => {
+        .catch((e) => reject(e))
+    })
+  },
+  init({ commit }) {
+    return new Promise((resolve, reject) => {
+      User.current()
+        .then(({ entities }) => {
           const user = entities?.users?.[0]
           commit('set_user', user)
           resolve(user)
@@ -44,9 +52,15 @@ const actions = {
       resolve()
     })
   },
-  show({ commit }, bool) {
-    commit('set_show', bool)
+  keep({ commit, state }) {
+    if (!state?.token?.expired_at) return
+    const diff = -dayjs().diff(state.token.expired_at, 'millisecond')
+    setTimeout(() => {
+      authApi.refreshToken().then(({ data }) => {
+        commit('set_token', data)
+      })
+    }, diff - 5000)
   }
 }
 
-export default { namespaced: true, state, mutations, actions }
+export default { namespaced: true, state, getters, mutations, actions }

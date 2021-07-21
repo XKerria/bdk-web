@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import axios from 'axios'
+import axios from '@/utils/axios'
 
 import auth from './auth'
 import glob from './glob'

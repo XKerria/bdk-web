@@ -16,7 +16,22 @@
         </template>
       </a-breadcrumb>
     </div>
-    <div></div>
+    <div class="right">
+      <a-dropdown>
+        <a-button type="text">
+          <span>{{ user?.name }}</span>
+          <ui-icon name="md-arrow-down-r" />
+        </a-button>
+        <template #overlay>
+          <a-menu @click="onActionClick">
+            <a-menu-item key="logout">
+              <ui-icon name="md-logout-r" />
+              <span>注销</span>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
+    </div>
   </div>
 </template>
 
@@ -31,6 +46,7 @@ const store = useStore()
 const route = useRoute()
 const router = useRouter()
 
+const user = computed(() => store.state.auth.user)
 const collapsed = computed(() => store.state.glob.navCollapsed)
 const routes = ref([])
 const state = reactive({ routes })
@@ -59,9 +75,24 @@ watch(
 const onLinkClick = (item) => {
   router.replace(item.path)
 }
+
+const onActionClick = ({ item, key, keyPath }) => {
+  switch (key) {
+    case 'logout':
+      return logout()
+    default:
+      return
+  }
+}
+
+const logout = () => {
+  store.dispatch('auth/logout').then(() => {
+    router.replace('/login')
+  })
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .header {
   height: 100%;
   width: 100%;

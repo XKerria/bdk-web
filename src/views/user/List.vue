@@ -9,6 +9,4 @@ import { reactive } from 'vue'
 import User from '@/models/User'
 
 const state = reactive({})
-
-// User.fetch()
 </script>

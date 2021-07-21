@@ -7,13 +7,11 @@ export default class User extends BaseModel {
     return {
       id: this.attr(null),
       phone: this.attr(null),
-      email: this.attr(null),
-      nickname: this.attr(null),
-      avatar: this.attr(null)
+      name: this.attr(null)
     }
   }
 
-  static fetchCurrent() {
-    return this.api().get('/api/site/auth/user')
+  static current() {
+    return this.api().get('/auth/user')
   }
 }
