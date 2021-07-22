@@ -1,21 +1,16 @@
 <template>
   <a-form :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
-    <a-form-item v-bind="validateInfos.logo" label="LOGO">
-      <image-field height="100" width="100" v-model:value="modelRef.logo" />
+    <a-form-item v-bind="validateInfos.name" label="姓名">
+      <a-input v-model:value="modelRef.name" placeholder="姓名" />
     </a-form-item>
-    <a-form-item v-bind="validateInfos.name" label="品牌名称">
-      <a-input v-model:value="modelRef.name" placeholder="品牌名称" @input="onNameChange" />
-    </a-form-item>
-    <a-form-item v-bind="validateInfos.letter" label="首字母">
-      <a-input v-model:value="modelRef.letter" placeholder="首字母" disabled />
+    <a-form-item v-bind="validateInfos.phone" label="手机号">
+      <a-input v-model:value="modelRef.phone" placeholder="手机号" />
     </a-form-item>
   </a-form>
 </template>
 
 <script setup>
-import { defineExpose, onMounted, reactive, toRaw } from 'vue'
-import ImageField from '@/components/image/Field.vue'
-import cnchar from 'cnchar'
+import { defineExpose, reactive, toRaw } from 'vue'
 import { Form } from 'ant-design-vue'
 
 const useForm = Form.useForm
@@ -30,22 +25,17 @@ const props = defineProps({
 const modelRef = reactive({ ...props.model })
 
 const ruleRef = reactive({
-  logo: [{ required: true, message: '必填' }],
   name: [
     { required: true, message: '必填' },
     { min: 1, max: 64, message: '长度为 1 ~ 64 位' }
   ],
-  letter: [
+  phone: [
     { required: true, message: '必填' },
-    { length: 1, message: '长度为 1 位' }
+    { pattern: /^1[3-9][0-9]{9}$/, message: '手机号格式错误' }
   ]
 })
 
 const { validate, validateInfos } = useForm(modelRef, ruleRef)
-
-const onNameChange = () => {
-  modelRef.letter = cnchar.spell(modelRef.name.trim())?.[0]?.toUpperCase() ?? ''
-}
 
 defineExpose({
   validate: () => {
