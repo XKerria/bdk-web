@@ -7,8 +7,10 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
+    "ali-oss": "^6.16.0",
     "ant-design-vue": "^2.2.2",
     "axios": "^0.21.1",
+    "cnchar": "^3.0.1",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.10.6",
     "js-base64": "^3.6.1",
@@ -24,6 +26,7 @@
     "@vitejs/plugin-vue-jsx": "^1.1.6",
     "@vue/compiler-sfc": "^3.0.5",
     "less": "^4.1.1",
+    "svgo": "^2.3.1",
     "vite": "^2.4.2",
     "vite-plugin-svg-icons": "^1.0.1"
   }

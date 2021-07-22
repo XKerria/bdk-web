@@ -20,6 +20,44 @@ export const routes = [
         component: () => import('../views/dashboard/Dashboard.vue')
       },
       {
+        path: 'brands',
+        name: 'brands',
+        component: () => import('../views/brand/index.vue'),
+        meta: {
+          title: '汽车品牌',
+          icon: 'si-ferrari'
+        },
+        children: [
+          {
+            path: '',
+            name: 'brand-list',
+            meta: {
+              title: '品牌管理',
+              icon: 'si-citroen'
+            },
+            component: () => import('../views/brand/List.vue')
+          },
+          {
+            path: 'add',
+            name: 'brand-add',
+            meta: {
+              title: '添加品牌',
+              icon: 'si-mercedes'
+            },
+            component: () => import('../views/brand/Add.vue')
+          },
+          {
+            path: 'edit',
+            name: 'brand-edit',
+            meta: {
+              title: '品牌编辑',
+              icon: 'si-bugatti'
+            },
+            component: () => import('../views/brand/Add.vue')
+          }
+        ]
+      },
+      {
         path: 'users',
         name: 'users',
         component: () => import('../views/user/index.vue'),

@@ -22,7 +22,8 @@ export default defineConfig({
     vueJsx(),
     svgIcons({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
-      symbolId: 'icon-[dir]-[name]'
+      symbolId: 'icon-[dir]-[name]',
+      svgoOptions: true
     })
   ]
 })

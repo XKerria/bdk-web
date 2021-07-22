@@ -1,6 +1,8 @@
 import Axios from 'axios'
 import store from '@/store'
 import router from '@/router'
+import { message } from 'ant-design-vue'
+import _ from 'lodash'
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL
@@ -16,6 +18,7 @@ const handle = (e) => {
       })
       break
     case 422:
+      message.error(_.flatten(Object.values(e?.invalid)).join(' | '))
       break
     case 500:
       break
