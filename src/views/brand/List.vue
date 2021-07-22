@@ -8,7 +8,10 @@
         placeholder="名称关键字"
         @search="onSearch"
       />
-      <a-button type="primary" @click="$router.push('/brands/add')">添加品牌</a-button>
+      <a-button type="primary" @click="$router.push('/brands/add')">
+        <ui-icon name="md-add-r" />
+        <span>添加</span>
+      </a-button>
     </div>
 
     <div class="table">
