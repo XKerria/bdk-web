@@ -33,7 +33,7 @@ export const routes = [
             name: 'brand-list',
             meta: {
               title: '品牌管理',
-              icon: 'si-citroen'
+              icon: 'si-bugatti'
             },
             component: () => import('../views/brand/List.vue')
           },
@@ -47,13 +47,14 @@ export const routes = [
             component: () => import('../views/brand/Add.vue')
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'brand-edit',
+            props: true,
             meta: {
-              title: '品牌编辑',
-              icon: 'si-bugatti'
+              hidden: true,
+              title: '品牌编辑'
             },
-            component: () => import('../views/brand/Add.vue')
+            component: () => import('../views/brand/Edit.vue')
           }
         ]
       },

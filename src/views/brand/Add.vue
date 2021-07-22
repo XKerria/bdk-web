@@ -12,6 +12,7 @@ import { reactive, ref } from '@vue/reactivity'
 import BrandForm from './components/Form.vue'
 import brandApi from '@/api/brand'
 import { useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
 
 const router = useRouter()
 const form = ref(null)
@@ -23,7 +24,8 @@ const onSubmitClick = () => {
     .then((values) => {
       return brandApi.store(values)
     })
-    .then((res) => {
+    .then(() => {
+      message.success('添加成功')
       router.replace('/brands')
     })
 }

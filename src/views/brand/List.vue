@@ -22,10 +22,12 @@
 
 <script setup lang="jsx">
 import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import AntdTable from '@/components/antd/Table.vue'
 import brandApi from '@/api/brand'
 import { message } from 'ant-design-vue'
 
+const router = useRouter()
 const table = ref(null)
 
 const columns = [
@@ -51,7 +53,12 @@ const columns = [
       return (
         <a-space>
           <a-tooltip title='编辑'>
-            <a-button type='primary' shape='circle' size='small'>
+            <a-button
+              type='primary'
+              shape='circle'
+              size='small'
+              onClick={() => router.push(`/brands/${record.id}/edit`)}
+            >
               <ui-icon name='md-edit-fr' />
             </a-button>
           </a-tooltip>

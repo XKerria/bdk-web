@@ -26,6 +26,7 @@ export default defineComponent(() => {
         </ASubMenu>
       )
     } else {
+      if (item.meta.hidden) return
       const slots = {
         default: () => <span>{item.meta.title}</span>,
         icon: () => <UiIcon name={item.meta.icon} />

@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineExpose, reactive, toRaw } from 'vue'
+import { defineExpose, onMounted, reactive, toRaw } from 'vue'
 import ImageField from '@/components/image/Field.vue'
 import cnchar from 'cnchar'
 import { Form } from 'ant-design-vue'

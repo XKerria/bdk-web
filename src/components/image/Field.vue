@@ -71,6 +71,8 @@ const onTriggerClick = (e) => {
 
 <style lang="less" scoped>
 .image-field {
+  cursor: pointer;
+
   .trigger {
     height: 100%;
     width: 100%;
