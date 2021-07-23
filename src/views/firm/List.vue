@@ -50,18 +50,25 @@ const columns = [
     dataIndex: 'name',
     sorter: true,
     encoding: 'gbk',
-    width: 200
+    width: 250,
+    ellipsis: true
   },
   {
-    title: '联系电话',
+    title: '详情',
     dataIndex: 'phone',
-    sorter: true,
-    width: 150
-  },
-  {
-    title: '联系地址',
-    dataIndex: 'address',
-    sorter: true
+    ellipsis: true,
+    customRender: ({ _, record }) => (
+      <ASpace direction='vertical' size='small' style='font-size: 12px'>
+        <div>联系电话：{record.phone === '' ? '-' : record.phone}</div>
+        <div>联系地址：{record.address === '' ? '-' : record.address}</div>
+        <div>
+          <span>主营品牌：</span>
+          {record.brands.map((i) => (
+            <ATag color='processing'>{i}</ATag>
+          ))}
+        </div>
+      </ASpace>
+    )
   },
   {
     dataIndex: 'id',
