@@ -75,27 +75,25 @@ const data = ref([])
 const y = ref(0)
 const serialWidth = ref(50)
 
+const getSerialWidth = (num) => {
+  if (num > 1000) return 80
+  if (num > 100) return 70
+  if (num > 10) return 60
+  return 50
+}
+
 const cols = computed(() => {
   if (!props.showSerial) return props.columns
   return [
     {
       title: '#',
       align: 'center',
-      width: getSerialWidth(state.total),
+      width: serialWidth.value,
       customRender: ({ index }) => (current.value - 1) * pageSize.value + index + 1
     },
     ...props.columns
   ]
 })
-
-const getSerialWidth = (num) => {
-  if (num > 10) return 60
-  if (num > 100) return 70
-  if (num > 1000) return 80
-  return 50
-}
-
-const serial = reactive({})
 
 const state = reactive({ loading, current, pageSize, total, data, y })
 
@@ -113,6 +111,7 @@ const load = (params) => {
   state.loading = true
   props.request({ page: current.value, size: pageSize.value, ...params }).then((res) => {
     state.total = res.total
+    serialWidth.value = getSerialWidth(res.total)
     state.data = res.data
     state.loading = false
   })
