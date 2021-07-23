@@ -5,7 +5,7 @@
         v-model:value="search"
         style="width: 400px"
         enter-button
-        placeholder="名称关键字"
+        placeholder="关键字（名称、电话、地址）"
         @search="onSearch"
       />
       <a-button type="primary" @click="$router.push('/firms/add')">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="table">
-      <antd-table ref="table" :search="search" :columns="columns" :request="request" :gbk="['name']" />
+      <antd-table ref="table" :search="search" :columns="columns" :request="request" />
     </div>
   </div>
 </template>
@@ -32,10 +32,36 @@ const table = ref(null)
 
 const columns = [
   {
+    title: 'LOGO',
+    dataIndex: 'logo',
+    width: 72,
+    align: 'center',
+    customRender: ({ text }) => <AImage height='48px' width='48px' src={text} />
+  },
+  {
+    title: '门头照',
+    dataIndex: 'image',
+    width: 120,
+    align: 'center',
+    customRender: ({ text }) => <AImage height='48px' width='85px' src={text} />
+  },
+  {
     title: '名称',
     dataIndex: 'name',
     sorter: true,
-    encoding: 'gbk'
+    encoding: 'gbk',
+    width: 200
+  },
+  {
+    title: '联系电话',
+    dataIndex: 'phone',
+    sorter: true,
+    width: 150
+  },
+  {
+    title: '联系地址',
+    dataIndex: 'address',
+    sorter: true
   },
   {
     dataIndex: 'id',
@@ -70,7 +96,7 @@ const columns = [
 const search = ref('')
 
 const request = (params) => {
-  return firmApi.index({ like: `name:${search.value}`, ...params })
+  return firmApi.index({ like: `name:${search.value}|phone:${search.value}|address:${search.value}`, ...params })
 }
 
 const state = reactive({ columns, search, request })

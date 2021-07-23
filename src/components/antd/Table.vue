@@ -55,10 +55,6 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  gbk: {
-    type: Array,
-    default: []
-  },
   tip: {
     type: String,
     default: '正在加载...'

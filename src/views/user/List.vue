@@ -5,7 +5,7 @@
         v-model:value="search"
         style="width: 400px"
         enter-button
-        placeholder="姓名、手机号关键字"
+        placeholder="关键字（姓名、电话）"
         @search="onSearch"
       />
       <a-button type="primary" @click="$router.push('/users/add')">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="table">
-      <antd-table ref="table" :search="search" :columns="columns" :request="request" :gbk="['name']" />
+      <antd-table ref="table" :search="search" :columns="columns" :request="request" />
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ const columns = [
     encoding: 'gbk',
     width: 100
   },
-  { title: '手机号', dataIndex: 'phone', width: 150 },
+  { title: '手机号', dataIndex: 'phone', width: 150, sorter: true },
   { title: '公司', dataIndex: 'firm.name' },
   {
     dataIndex: 'id',

@@ -5,7 +5,7 @@
         v-model:value="search"
         style="width: 400px"
         enter-button
-        placeholder="名称关键字"
+        placeholder="关键字（名称）"
         @search="onSearch"
       />
       <a-button type="primary" @click="$router.push('/brands/add')">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="table">
-      <antd-table ref="table" :search="search" :columns="columns" :request="request" :gbk="['name']" />
+      <antd-table ref="table" :search="search" :columns="columns" :request="request" />
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ const columns = [
     align: 'center',
     customRender: ({ text }) => <AImage height='48px' width='48px' src={text} />
   },
-  { title: '首字母', dataIndex: 'letter', width: 100, align: 'center' },
+  { title: '首字母', dataIndex: 'letter', width: 100, align: 'center', sorter: true },
   {
     title: '名称',
     dataIndex: 'name',
