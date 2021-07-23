@@ -24,6 +24,16 @@ export default {
         icon: 'md-user-add-fr'
       },
       component: () => import('../views/user/Add.vue')
+    },
+    {
+      path: ':id/edit',
+      name: 'user-edit',
+      props: true,
+      meta: {
+        hidden: true,
+        title: '编辑用户'
+      },
+      component: () => import('../views/user/Edit.vue')
     }
   ]
 }

@@ -21,14 +21,18 @@
 </template>
 
 <script setup lang="jsx">
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import AntdTable from '@/components/antd/Table.vue'
 import userApi from '@/api/user'
 import { message } from 'ant-design-vue'
 
+const store = useStore()
 const router = useRouter()
 const table = ref(null)
+
+const user = computed(() => store?.state?.auth?.user)
 
 const columns = [
   {
@@ -57,13 +61,15 @@ const columns = [
               <ui-icon name='md-edit-fr' />
             </a-button>
           </a-tooltip>
-          <a-popconfirm title='该操作将无法恢复，确认要删除？' onConfirm={() => onDeleteConfirm(record)}>
-            <a-tooltip title='删除'>
-              <a-button type='primary' danger shape='circle' size='small'>
-                <ui-icon name='md-delete-fr' />
-              </a-button>
-            </a-tooltip>
-          </a-popconfirm>
+          {user.value.id !== record.id && (
+            <a-popconfirm title='该操作将无法恢复，确认要删除？' onConfirm={() => onDeleteConfirm(record)}>
+              <a-tooltip title='删除'>
+                <a-button type='primary' danger shape='circle' size='small'>
+                  <ui-icon name='md-delete-fr' />
+                </a-button>
+              </a-tooltip>
+            </a-popconfirm>
+          )}
         </a-space>
       )
     }
@@ -83,9 +89,13 @@ const request = (params) => {
 const state = reactive({ columns, search, request })
 
 const onDeleteConfirm = (item) => {
-  userApi.destroy(item.id).then(() => {
-    table.value.refresh()
-    message.success('删除成功')
+  userApi.destroy(item.id).then(({ data }) => {
+    if (data === 1) {
+      table.value.refresh()
+      message.success('删除成功')
+    } else {
+      message.success('删除失败')
+    }
   })
 }
 
