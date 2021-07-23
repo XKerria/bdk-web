@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
+import firm from './firm'
+import brand from './brand'
+import user from './user'
 
 export const routes = [
   {
@@ -19,74 +22,9 @@ export const routes = [
         },
         component: () => import('../views/dashboard/Dashboard.vue')
       },
-      {
-        path: 'brands',
-        name: 'brands',
-        component: () => import('../views/brand/index.vue'),
-        meta: {
-          title: '汽车品牌',
-          icon: 'si-ferrari'
-        },
-        children: [
-          {
-            path: '',
-            name: 'brand-list',
-            meta: {
-              title: '品牌管理',
-              icon: 'si-bugatti'
-            },
-            component: () => import('../views/brand/List.vue')
-          },
-          {
-            path: 'add',
-            name: 'brand-add',
-            meta: {
-              title: '添加品牌',
-              icon: 'si-mercedes'
-            },
-            component: () => import('../views/brand/Add.vue')
-          },
-          {
-            path: ':id/edit',
-            name: 'brand-edit',
-            props: true,
-            meta: {
-              hidden: true,
-              title: '品牌编辑'
-            },
-            component: () => import('../views/brand/Edit.vue')
-          }
-        ]
-      },
-      {
-        path: 'users',
-        name: 'users',
-        component: () => import('../views/user/index.vue'),
-        meta: {
-          title: '用户管理',
-          icon: 'md-user-list-fr'
-        },
-        children: [
-          {
-            path: '',
-            name: 'user-list',
-            meta: {
-              title: '用户管理',
-              icon: 'md-users-fr'
-            },
-            component: () => import('../views/user/List.vue')
-          },
-          {
-            path: 'add',
-            name: 'user-add',
-            meta: {
-              title: '添加用户',
-              icon: 'md-user-add-fr'
-            },
-            component: () => import('../views/user/Add.vue')
-          }
-        ]
-      },
+      firm,
+      brand,
+      user,
       {
         path: 'settings',
         name: 'settings',

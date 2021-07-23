@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-list">
+  <div class="firm-list">
     <div class="tbar">
       <a-input-search
         v-model:value="search"
@@ -8,7 +8,7 @@
         placeholder="名称关键字"
         @search="onSearch"
       />
-      <a-button type="primary" @click="$router.push('/brands/add')">
+      <a-button type="primary" @click="$router.push('/firms/add')">
         <ui-icon name="md-add-r" />
         <span>添加</span>
       </a-button>
@@ -24,21 +24,13 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AntdTable from '@/components/antd/Table.vue'
-import brandApi from '@/api/brand'
+import firmApi from '@/api/firm'
 import { message } from 'ant-design-vue'
 
 const router = useRouter()
 const table = ref(null)
 
 const columns = [
-  {
-    title: 'LOGO',
-    dataIndex: 'logo',
-    width: 72,
-    align: 'center',
-    customRender: ({ text }) => <AImage height='48px' width='48px' src={text} />
-  },
-  { title: '首字母', dataIndex: 'letter', width: 100, align: 'center' },
   {
     title: '名称',
     dataIndex: 'name',
@@ -57,7 +49,7 @@ const columns = [
               type='primary'
               shape='circle'
               size='small'
-              onClick={() => router.push(`/brands/${record.id}/edit`)}
+              onClick={() => router.push(`/firms/${record.id}/edit`)}
             >
               <ui-icon name='md-edit-fr' />
             </a-button>
@@ -78,13 +70,13 @@ const columns = [
 const search = ref('')
 
 const request = (params) => {
-  return brandApi.index({ like: `name:${search.value}`, ...params })
+  return firmApi.index({ like: `name:${search.value}`, ...params })
 }
 
 const state = reactive({ columns, search, request })
 
 const onDeleteConfirm = (item) => {
-  brandApi.destroy(item.id).then(() => {
+  firmApi.destroy(item.id).then(() => {
     table.value.refresh()
     message.success('删除成功')
   })
@@ -96,7 +88,7 @@ const onSearch = () => {
 </script>
 
 <style lang="less" scoped>
-.brand-list {
+.firm-list {
   height: 100%;
   overflow: hidden;
   padding: 16px;

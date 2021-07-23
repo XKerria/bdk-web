@@ -46,7 +46,7 @@ const columns = [
     align: 'right',
     customRender: ({ record }) => {
       return (
-        <a-space>
+        <a-space size='middle'>
           <a-tooltip title='编辑'>
             <a-button
               type='primary'
