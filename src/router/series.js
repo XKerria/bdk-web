@@ -4,7 +4,7 @@ export default {
   component: () => import('../views/series/index.vue'),
   meta: {
     title: '车辆系列',
-    icon: 'si-ferrari'
+    icon: 'si-rolls-royce'
   },
   children: [
     {
@@ -12,7 +12,7 @@ export default {
       name: 'series-list',
       meta: {
         title: '车辆系列',
-        icon: 'si-bugatti'
+        icon: 'si-maserati'
       },
       component: () => import('../views/series/List.vue')
     },
@@ -21,7 +21,7 @@ export default {
       name: 'series-add',
       meta: {
         title: '添加系列',
-        icon: 'si-mercedes'
+        icon: 'si-volvo'
       },
       component: () => import('../views/series/Add.vue')
     },

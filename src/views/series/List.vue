@@ -5,7 +5,7 @@
         v-model:value="search"
         style="width: 400px"
         enter-button
-        placeholder="关键字（名称、电话、地址）"
+        placeholder="关键字（名称）"
         @search="onSearch"
       />
       <a-button type="primary" @click="$router.push('/series/add')">
@@ -56,7 +56,7 @@ const columns = [
     title: '估价',
     dataIndex: 'price',
     sorter: true,
-    width: 150
+    width: 300
   },
   {
     dataIndex: 'id',

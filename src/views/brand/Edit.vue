@@ -49,6 +49,7 @@ const onSubmitClick = () => {
 <style lang="less" scoped>
 .brand-edit {
   padding: 64px 280px;
+  background-color: #fff;
   .bbar {
     text-align: center;
   }
