@@ -3,6 +3,7 @@ import store from '@/store'
 import firm from './firm'
 import brand from './brand'
 import series from './series'
+import black from './black'
 import user from './user'
 
 export const routes = [
@@ -26,6 +27,7 @@ export const routes = [
       firm,
       brand,
       series,
+      black,
       user,
       {
         path: 'settings',
