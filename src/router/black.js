@@ -4,7 +4,7 @@ export default {
   component: () => import('../views/black/index.vue'),
   meta: {
     title: '黑名单',
-    icon: 'md-warning-fr'
+    icon: 'md-security-user-fr'
   },
   children: [
     {
@@ -12,7 +12,7 @@ export default {
       name: 'black-list',
       meta: {
         title: '名单管理',
-        icon: 'si-bugatti'
+        icon: 'md-security-search-fr'
       },
       component: () => import('../views/black/List.vue')
     },
@@ -21,7 +21,7 @@ export default {
       name: 'black-add',
       meta: {
         title: '添加客户',
-        icon: 'si-mercedes'
+        icon: 'md-security-add-fr'
       },
       component: () => import('../views/black/Add.vue')
     },
