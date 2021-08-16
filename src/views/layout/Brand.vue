@@ -17,7 +17,7 @@
 import { computed, defineProps } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-const logo = computed(() => store.state.glob.settings.find((i) => i.name === 'logo'))
+const logo = computed(() => store.state.glob.settings.find((i) => i.name === 'LOGO'))
 const title = computed(() => store.state.glob.settings.find((i) => i.name === '平台名称'))
 const collapsed = computed(() => store.state.glob.navCollapsed)
 </script>

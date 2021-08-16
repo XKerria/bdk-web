@@ -7,9 +7,13 @@ const state = () => ({
 })
 
 const getters = {
-  setting: (state) => (name) => {
-    return state.settings.filter((i) => i.name === name)?.[0]?.value ?? null
-  }
+  setting:
+    (state) =>
+    (name, raw = false) => {
+      let result = state.settings.filter((i) => i.name === name)?.[0] ?? null
+      result = raw ? result : result?.value ?? null
+      return result
+    }
 }
 
 const mutations = {
@@ -22,7 +26,7 @@ const mutations = {
 }
 
 const actions = {
-  preload({ commit }) {
+  loadSettings({ commit }) {
     return new Promise((resolve, reject) => {
       settingApi
         .index()

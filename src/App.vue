@@ -9,7 +9,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
-store.dispatch('glob/preload')
+store.dispatch('glob/loadSettings')
 </script>
 
 <style>
