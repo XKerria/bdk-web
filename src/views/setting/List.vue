@@ -1,18 +1,18 @@
 <template>
   <div class="settings">
-    <div class="item">
+    <div class="item" v-if="logo">
       <div class="label">{{ logo.name }}</div>
       <div class="value">
         <image-field v-model:value="logo.value" @update:value="(val) => onValueChange(logo)" width="100" height="100" />
       </div>
     </div>
-    <div class="item">
+    <div class="item" v-if="platform">
       <div class="label">{{ platform.name }}</div>
       <div class="value">
         <a-typography-text v-model:content="platform.value" :editable="{ onEnd: () => onValueChange(platform) }" />
       </div>
     </div>
-    <div class="item">
+    <div class="item" v-if="bg">
       <div class="label">{{ bg.name }}</div>
       <div class="value">
         <image-field v-model:value="bg.value" @update:value="(val) => onValueChange(bg)" width="320" height="180" />
@@ -31,7 +31,7 @@ import numeral from 'numeral'
 
 const store = useStore()
 
-const logo = computed(() => store.getters['glob/setting']('LOGO', true))
+const logo = computed(() => store.getters['glob/setting']('logo', true))
 const platform = computed(() => store.getters['glob/setting']('平台名称', true))
 const bg = computed(() => store.getters['glob/setting']('登录背景', true))
 

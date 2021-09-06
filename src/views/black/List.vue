@@ -8,10 +8,7 @@
         placeholder="关键字（姓名、电话、描述）"
         @search="onSearch"
       />
-      <a-button type="primary" @click="$router.push('/blacks/add')">
-        <ui-icon name="md-add-r" />
-        <span>添加</span>
-      </a-button>
+      <span></span>
     </div>
 
     <div class="table">
@@ -51,16 +48,6 @@ const columns = [
     customRender: ({ record }) => {
       return (
         <a-space size='middle'>
-          <a-tooltip title='编辑'>
-            <a-button
-              type='primary'
-              shape='circle'
-              size='small'
-              onClick={() => router.push(`/blacks/${record.id}/edit`)}
-            >
-              <ui-icon name='md-edit-fr' />
-            </a-button>
-          </a-tooltip>
           <a-popconfirm title='该操作将无法恢复，确认要删除？' onConfirm={() => onDeleteConfirm(record)}>
             <a-tooltip title='删除'>
               <a-button type='primary' danger shape='circle' size='small'>
